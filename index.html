@@ -1,0 +1,740 @@
+<!doctype html>
+<html lang="sl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fridro · Vse na enem mestu</title>
+<meta name="description" content="Fridro: vrhunsko orodje, pametni avtomati in oprema za maksimalno produktivnost. Vaš partner že 35 let.">
+<meta name="robots" content="noindex">
+<link rel="preload" href="assets/fonts/MaisonNeue-Book.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="assets/fonts/MaisonNeue-Medium.otf" as="font" type="font/otf" crossorigin>
+<style>
+@font-face{font-family:"Maison";src:url(assets/fonts/MaisonNeue-Light.otf) format("opentype");font-weight:300;font-display:swap}
+@font-face{font-family:"Maison";src:url(assets/fonts/MaisonNeue-Book.otf) format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Maison";src:url(assets/fonts/MaisonNeue-Medium.otf) format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Maison";src:url(assets/fonts/MaisonNeue-Demi.otf) format("opentype");font-weight:600;font-display:swap}
+@font-face{font-family:"Maison";src:url(assets/fonts/MaisonNeue-Bold.otf) format("opentype");font-weight:700;font-display:swap}
+
+:root{
+  --bg:#F3F2EE; --paper:#FBFAF7; --ink:#121412; --ink-2:#2B2F2B; --muted:#71756F; --line:rgba(18,20,18,.12);
+  --sage:#DDE3D7; --sage-2:#B7C2AF; --sage-3:#7F8F78;
+  --green:#4CAF52; --green-deep:#2E7A35; --graphite:#141715; --graphite-2:#1D211E;
+  --pad:clamp(20px,3.4vw,64px);
+  --ease:cubic-bezier(.2,.7,.1,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font-family:"Maison",ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+::selection{background:var(--green);color:#fff}
+
+/* ---------- type ---------- */
+.display{font-weight:500;letter-spacing:-.045em;line-height:1;font-size:clamp(54px,9.2vw,190px)}
+.h2{font-weight:500;letter-spacing:-.035em;line-height:1.02;font-size:clamp(40px,5.6vw,112px)}
+.h3{font-weight:500;letter-spacing:-.025em;line-height:1.08;font-size:clamp(28px,2.6vw,48px)}
+.lead{font-size:clamp(19px,1.45vw,26px);line-height:1.4;letter-spacing:-.01em;color:var(--ink-2)}
+.muted{color:var(--muted)}
+.gray{color:#A3A79F}
+.green{color:var(--green)}
+
+/* word mask reveal; padding keeps descenders (j, g, p) from being clipped */
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding:0 .02em .14em;margin-bottom:-.14em}
+.w > span{display:inline-block;will-change:transform}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:14px;height:60px;padding:0 28px;border-radius:999px;font-size:17px;font-weight:500;letter-spacing:-.01em;transition:background .4s var(--ease),color .4s var(--ease),transform .4s var(--ease)}
+.btn svg{width:18px;height:18px;transition:transform .4s var(--ease)}
+.btn:hover svg{transform:translateX(4px)}
+.btn-ink{background:var(--ink);color:#fff}
+.btn-ink:hover{background:var(--green-deep)}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:var(--green-deep)}
+.btn-ghost{background:rgba(18,20,18,.06);color:var(--ink)}
+.btn-ghost:hover{background:rgba(18,20,18,.12)}
+.btn-light{background:#fff;color:var(--ink)}
+.btn-light:hover{background:var(--sage)}
+.link{display:inline-flex;gap:10px;align-items:center;font-weight:500;border-bottom:1px solid currentColor;padding-bottom:4px}
+.link svg{width:16px;height:16px;transition:transform .4s var(--ease)}
+.link:hover svg{transform:translateX(4px)}
+
+/* ---------- nav ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;height:104px;display:flex;align-items:center;justify-content:space-between;padding:0 var(--pad);transition:height .5s var(--ease),background .5s var(--ease),box-shadow .5s var(--ease)}
+.nav.scrolled{height:84px;background:rgba(243,242,238,.86);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:0 1px 0 var(--line)}
+.nav .logo img{height:68px;width:auto;transition:height .5s var(--ease)}
+.nav.scrolled .logo img{height:54px}
+.nav-links{display:flex;gap:clamp(18px,2.4vw,44px);font-size:18px;font-weight:500;letter-spacing:-.01em}
+.nav-links a{position:relative;padding:6px 0}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--green);transform:scaleX(0);transform-origin:right;transition:transform .5s var(--ease)}
+.nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-right{display:flex;align-items:center;gap:12px}
+.nav-right .lang{font-weight:500;font-size:16px;padding:0 14px;height:48px;display:inline-flex;align-items:center;border-radius:999px}
+.nav-right .lang:hover{background:rgba(18,20,18,.06)}
+.nav .btn{height:52px;padding:0 24px;font-size:16px}
+.burger{display:none;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;align-items:center;justify-content:center}
+.burger span{display:block;width:18px;height:2px;background:#fff;position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:#fff}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+.drawer{position:fixed;inset:0;z-index:60;background:var(--graphite);color:#fff;padding:120px var(--pad) 40px;display:flex;flex-direction:column;gap:8px;transform:translateY(-100%);transition:transform .7s var(--ease)}
+.drawer.open{transform:none}
+.drawer a{font-size:40px;font-weight:500;letter-spacing:-.03em;line-height:1.2}
+.drawer .close{position:absolute;top:26px;right:var(--pad);width:52px;height:52px;border-radius:50%;background:#fff;color:var(--ink);font-size:24px}
+
+/* ---------- hero ---------- */
+.hero{padding:calc(104px + clamp(40px,7vw,120px)) 0 0}
+.hero-top{padding:0 var(--pad);display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(32px,5vw,96px);align-items:end}
+.hero-side{display:flex;flex-direction:column;gap:32px;padding-bottom:.6vw;max-width:560px}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px}
+.search{margin:clamp(40px,5vw,80px) var(--pad) 0;display:flex;align-items:center;gap:16px;background:var(--paper);border-radius:999px;padding:10px 10px 10px 30px;box-shadow:0 1px 0 var(--line),0 30px 60px -40px rgba(18,20,18,.35)}
+.search svg{width:22px;height:22px;flex:none;color:var(--muted)}
+.search input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:clamp(17px,1.3vw,22px);letter-spacing:-.01em;color:var(--ink);height:56px}
+.search input::placeholder{color:#9A9E97}
+.search .chips{display:flex;gap:8px}
+.chip{height:44px;padding:0 18px;border-radius:999px;background:var(--bg);display:inline-flex;align-items:center;font-size:15px;font-weight:500;white-space:nowrap;transition:background .3s}
+.chip:hover{background:var(--sage)}
+.hero-media{position:relative;margin-top:clamp(28px,3vw,48px);height:clamp(420px,82vh,1100px);overflow:hidden;background:var(--graphite)}
+.hero-media img{position:absolute;inset:-12% 0 0 0;width:100%;height:124%;object-fit:cover;will-change:transform}
+.hero-card{position:absolute;left:var(--pad);bottom:var(--pad);display:flex;align-items:center;gap:20px;padding:14px 26px 14px 14px;border-radius:24px;background:rgba(20,23,21,.5);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);color:#fff;max-width:520px;transition:background .4s}
+.hero-card:hover{background:rgba(20,23,21,.7)}
+.hero-card img{width:96px;height:72px;object-fit:cover;border-radius:14px}
+.hero-card b{display:block;font-weight:500;font-size:18px;letter-spacing:-.01em}
+.hero-card span{font-size:15px;color:rgba(255,255,255,.7)}
+.hero-note{position:absolute;right:var(--pad);bottom:var(--pad);color:#fff;font-size:16px;display:flex;align-items:center;gap:12px}
+.hero-note i{display:block;width:10px;height:10px;border-radius:50%;background:var(--green);box-shadow:0 0 0 6px rgba(76,175,82,.25)}
+
+/* ---------- section scaffolding ---------- */
+section{position:relative}
+.sec{padding:clamp(96px,11vw,220px) var(--pad)}
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,96px);align-items:end;margin-bottom:clamp(48px,6vw,110px)}
+.sec-head .lead{max-width:640px}
+
+/* ---------- partner + stats ---------- */
+.partner{display:grid;grid-template-columns:1fr 1.15fr;gap:clamp(40px,6vw,120px);align-items:center}
+.partner-media{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:clamp(20px,2vw,36px);background:var(--sage)}
+.partner-media img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.partner-copy .h2{margin-bottom:clamp(28px,3vw,48px)}
+.partner-copy .lead{max-width:720px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(32px,4vw,64px) clamp(24px,3vw,48px);margin-top:clamp(56px,6vw,100px);padding-top:clamp(32px,3vw,48px);border-top:1px solid var(--line)}
+.stat b{display:block;font-weight:400;letter-spacing:-.05em;line-height:1;font-size:clamp(64px,7vw,136px)}
+.stat b sup{font-size:.45em;vertical-align:top;position:relative;top:.18em;margin-left:.04em;color:var(--green)}
+.stat > span{display:block;margin-top:14px;font-size:17px;color:var(--muted);max-width:260px}
+
+/* ---------- programs (hover list) ---------- */
+.programs{background:var(--paper)}
+.prog-list{border-top:1px solid var(--line)}
+.prog{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) auto;gap:32px;align-items:center;padding:clamp(22px,2.2vw,36px) 0;border-bottom:1px solid var(--line);transition:padding .5s var(--ease)}
+.prog h3{font-weight:500;font-size:clamp(28px,3.4vw,64px);letter-spacing:-.035em;line-height:1.05;transition:color .4s,transform .6s var(--ease)}
+.prog p{color:var(--muted);font-size:17px;max-width:520px}
+.prog .arrow{width:64px;height:64px;border-radius:50%;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:background .4s,color .4s,transform .5s var(--ease)}
+.prog .arrow svg{width:22px;height:22px}
+.prog:hover h3{color:var(--green-deep);transform:translateX(12px)}
+.prog:hover .arrow{background:var(--ink);color:#fff;transform:rotate(-45deg)}
+.prog .thumb{display:none}
+.prog-float{position:fixed;left:0;top:0;width:clamp(260px,22vw,420px);aspect-ratio:4/5;border-radius:24px;overflow:hidden;pointer-events:none;z-index:40;opacity:0;transform:translate(-50%,-50%) scale(.85);transition:opacity .35s var(--ease)}
+.prog-float img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s}
+.prog-float img.on{opacity:1}
+
+/* ---------- category bento ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:clamp(220px,22vw,440px);gap:clamp(10px,1vw,18px);margin-bottom:clamp(64px,7vw,120px)}
+.tile{position:relative;overflow:hidden;border-radius:clamp(18px,1.8vw,32px);background:var(--sage);color:#fff}
+.tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.tile:hover img{transform:scale(1.05)}
+.tile::after{content:"";position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(to top,rgba(10,12,10,.55),transparent)}
+.tile .cap{position:absolute;left:clamp(18px,1.8vw,32px);right:clamp(18px,1.8vw,32px);bottom:clamp(16px,1.6vw,28px);z-index:2;display:flex;justify-content:space-between;align-items:end;gap:16px}
+.tile .cap b{font-weight:500;font-size:clamp(22px,1.9vw,34px);letter-spacing:-.02em;line-height:1.1}
+.tile .cap span{flex:none;width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.18);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;transition:background .4s,color .4s}
+.tile:hover .cap span{background:#fff;color:var(--ink)}
+.tile .cap svg{width:18px;height:18px}
+.t1{grid-column:span 5;grid-row:span 2}
+.t2{grid-column:span 4}
+.t3{grid-column:span 3}
+.t4{grid-column:span 3}
+.t5{grid-column:span 4}
+
+/* ---------- full service (dark) ---------- */
+.dark{background:var(--graphite);color:#fff}
+.dark .lead{color:rgba(255,255,255,.72)}
+.dark .muted{color:rgba(255,255,255,.55)}
+.fs-media{position:relative;height:clamp(380px,72vh,980px);overflow:hidden;border-radius:clamp(20px,2vw,36px);margin-bottom:clamp(48px,6vw,96px)}
+.fs-media img{position:absolute;inset:-10% 0;width:100%;height:120%;object-fit:cover}
+.fs-badge{position:absolute;top:var(--pad);right:var(--pad);display:flex;align-items:center;gap:12px;padding:12px 20px;border-radius:999px;background:rgba(20,23,21,.55);backdrop-filter:blur(16px);font-size:16px}
+.fs-badge i{width:10px;height:10px;border-radius:50%;background:var(--green)}
+.fs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,56px)}
+.fs-item{padding-top:28px;border-top:1px solid rgba(255,255,255,.16)}
+.fs-item .ico{width:56px;height:56px;border-radius:16px;background:rgba(76,175,82,.14);color:var(--green);display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.fs-item .ico svg{width:26px;height:26px}
+.fs-item h3{font-weight:500;font-size:clamp(24px,1.9vw,34px);letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.fs-item p{color:rgba(255,255,255,.62);font-size:17px;max-width:420px}
+.fs-cta{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;margin-top:clamp(56px,6vw,96px)}
+
+/* ---------- B2B shop ---------- */
+.shop{display:grid;grid-template-columns:1fr 1.25fr;gap:clamp(40px,6vw,120px);align-items:start}
+.shop-copy{position:sticky;top:140px}
+.shop-copy .h2{margin-bottom:32px}
+.shop-feats{display:flex;flex-wrap:wrap;gap:10px;margin:36px 0 44px}
+.shop-feats span{height:44px;padding:0 18px;border-radius:999px;background:var(--paper);display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500}
+.shop-feats svg{width:16px;height:16px;color:var(--green)}
+.table{background:var(--paper);border-radius:clamp(20px,2vw,36px);padding:clamp(12px,1.4vw,24px)}
+.table-head{display:flex;justify-content:space-between;align-items:center;padding:16px clamp(12px,1.4vw,24px) 20px;font-size:15px;color:var(--muted)}
+.row{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:clamp(16px,1.6vw,28px);align-items:center;padding:18px clamp(12px,1.4vw,24px);border-radius:20px;transition:background .3s}
+.row:hover{background:var(--bg)}
+.row + .row{position:relative}
+.row + .row::before{content:"";position:absolute;top:0;left:clamp(12px,1.4vw,24px);right:clamp(12px,1.4vw,24px);height:1px;background:var(--line)}
+.row:hover::before,.row:hover + .row::before{opacity:0}
+.row .ph{width:72px;height:72px;border-radius:16px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--sage-3)}
+.row .ph svg{width:30px;height:30px}
+.row .nm{font-weight:500;font-size:17px;line-height:1.35;letter-spacing:-.01em}
+.row .br{font-size:14px;color:var(--muted);margin-top:4px}
+.row .pr{text-align:right;white-space:nowrap}
+.row .pr b{display:block;font-weight:500;font-size:22px;letter-spacing:-.02em}
+.row .pr span{font-size:13px;color:var(--muted)}
+.table-foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding:20px clamp(12px,1.4vw,24px) 8px}
+.table-foot p{font-size:15px;color:var(--muted)}
+
+/* ---------- specialist tiles ---------- */
+.spec{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:clamp(10px,1vw,18px)}
+.card{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:clamp(440px,38vw,720px);border-radius:clamp(20px,2vw,36px);overflow:hidden;padding:clamp(24px,2.4vw,44px);color:#fff;background:var(--graphite)}
+.card > img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 1.4s var(--ease)}
+.card:hover > img{transform:scale(1.05)}
+.card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,12,10,.55) 0%,rgba(10,12,10,0) 45%,rgba(10,12,10,.6) 100%);z-index:1}
+.card > *:not(img){position:relative;z-index:2}
+.card h3{font-weight:500;font-size:clamp(28px,2.4vw,44px);letter-spacing:-.03em;line-height:1.05;max-width:440px}
+.card p{color:rgba(255,255,255,.78);font-size:17px;max-width:420px;margin-bottom:24px}
+.card.light{background:var(--sage);color:var(--ink)}
+.card.light::before{display:none}
+.card.light p{color:var(--ink-2)}
+.card.light .paper-img{position:relative;align-self:center;width:84%;margin:28px 0;border-radius:12px;box-shadow:0 40px 80px -30px rgba(18,20,18,.45);transform:rotate(-3deg);transition:transform 1s var(--ease);z-index:1}
+.card.light:hover .paper-img{transform:rotate(-1deg) translateY(-8px)}
+
+/* ---------- catalogs shelf ---------- */
+.shelf-wrap{overflow:hidden;cursor:grab}
+.shelf-wrap:active{cursor:grabbing}
+.shelf{display:flex;gap:clamp(16px,2vw,36px);padding:0 var(--pad) 12px;width:max-content}
+.book{flex:none;width:clamp(220px,19vw,360px)}
+.book .cover{position:relative;aspect-ratio:7/10;border-radius:10px;overflow:hidden;background:var(--paper);box-shadow:0 1px 0 var(--line),0 40px 60px -40px rgba(18,20,18,.5);transition:transform .7s var(--ease)}
+.book:hover .cover{transform:translateY(-10px)}
+.book .cover img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none}
+.book b{display:block;margin-top:20px;font-weight:500;font-size:19px;letter-spacing:-.01em}
+.book span{font-size:15px;color:var(--muted)}
+.shelf-bar{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:clamp(32px,3vw,56px) var(--pad) 0}
+.progress{flex:1;max-width:420px;height:2px;background:var(--line);position:relative;overflow:hidden}
+.progress i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(.2)}
+
+/* ---------- brands ---------- */
+.brands{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.brand{aspect-ratio:16/9;display:flex;align-items:center;justify-content:center;border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:12%;transition:background .4s}
+.brand img{width:100%;max-width:170px;filter:grayscale(1) contrast(1.1);opacity:.62;mix-blend-mode:multiply;transition:filter .5s,opacity .5s}
+.brand:hover{background:var(--paper)}
+.brand:hover img{filter:none;opacity:1}
+
+/* ---------- team ---------- */
+.team{display:grid;grid-template-columns:repeat(12,1fr);gap:clamp(10px,1vw,18px);align-items:end}
+.team-quote{grid-column:1 / span 7;margin-bottom:clamp(48px,5vw,88px)}
+.team-quote .h2 .gray{color:#A9ADA6}
+.team-a{grid-column:1 / span 7;aspect-ratio:16/10;border-radius:clamp(20px,2vw,36px);overflow:hidden;position:relative}
+.team-b{grid-column:8 / span 5;aspect-ratio:4/5;border-radius:clamp(20px,2vw,36px);overflow:hidden;position:relative}
+.team-a img,.team-b img{position:absolute;inset:-8% 0;width:100%;height:116%;object-fit:cover}
+.team-meta{grid-column:8 / span 5;grid-row:1;align-self:end;margin-bottom:clamp(48px,5vw,88px)}
+.team-meta .lead{margin-bottom:32px}
+
+/* ---------- news ---------- */
+.news{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,1.6vw,28px)}
+.post .im{aspect-ratio:4/3;border-radius:clamp(16px,1.6vw,28px);overflow:hidden;background:var(--paper)}
+.post .im img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s var(--ease)}
+.post:hover .im img{transform:scale(1.05)}
+.post h3{margin-top:24px;font-weight:500;font-size:clamp(20px,1.45vw,26px);letter-spacing:-.02em;line-height:1.2}
+.post p{margin-top:12px;font-size:16px;color:var(--muted);display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ---------- CTA + footer ---------- */
+.cta{background:var(--green);color:#fff;border-radius:clamp(24px,2.4vw,44px);margin:0 var(--pad);padding:clamp(56px,7vw,140px) clamp(28px,5vw,96px);position:relative;overflow:hidden}
+.cta .display{font-size:clamp(48px,7.4vw,150px);max-width:14ch}
+.cta-row{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;margin-top:clamp(40px,5vw,80px)}
+.cta-row p{font-size:clamp(18px,1.3vw,22px);max-width:520px;color:rgba(255,255,255,.88)}
+.cta-ring{position:absolute;right:-12vw;top:-18vw;width:52vw;height:52vw;border-radius:50%;border:clamp(40px,5vw,96px) solid rgba(255,255,255,.08);pointer-events:none}
+.cta-ring.two{right:-2vw;top:-8vw;width:32vw;height:32vw;border-width:clamp(24px,3vw,60px);border-color:rgba(255,255,255,.06)}
+
+.foot{padding:clamp(80px,9vw,160px) var(--pad) 40px}
+.news-signup{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,96px);align-items:end;padding-bottom:clamp(64px,7vw,120px);border-bottom:1px solid var(--line)}
+.signup{display:flex;gap:8px;background:var(--paper);border-radius:999px;padding:8px 8px 8px 28px;align-items:center}
+.signup input{flex:1;min-width:0;border:0;outline:0;background:none;font:inherit;font-size:18px;height:56px}
+.signup .btn{height:56px}
+.signup-ok{display:none;margin-top:16px;color:var(--green-deep);font-weight:500}
+.foot-grid{display:grid;grid-template-columns:1.6fr repeat(4,1fr);gap:clamp(24px,3vw,56px);padding:clamp(56px,6vw,100px) 0}
+.foot-grid .logo img{height:64px;width:auto}
+.foot-grid h4{font-weight:500;font-size:16px;margin-bottom:20px}
+.foot-grid ul{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:16px;color:var(--muted)}
+.foot-grid a:hover{color:var(--ink)}
+.foot-bottom{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;font-size:14px;color:var(--muted);padding-top:28px;border-top:1px solid var(--line)}
+.langs{display:flex;gap:18px}
+.langs a.on{color:var(--ink);font-weight:500}
+
+/* ---------- responsive ---------- */
+@media (max-width:1180px){
+  .nav-links{display:none}
+  .nav-right .lang,.nav-right .btn-ghost{display:none}
+  .burger{display:inline-flex}
+  .brands{grid-template-columns:repeat(5,1fr)}
+  .news{grid-template-columns:repeat(2,1fr)}
+  .foot-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-grid > div:first-child{grid-column:1 / -1}
+}
+@media (max-width:900px){
+  body{font-size:17px}
+  .nav{height:84px}.nav .logo img{height:46px}
+  .nav .btn-ink{display:none}
+  .hero{padding-top:calc(84px + 40px)}
+  .hero-top,.sec-head,.partner,.shop,.news-signup{grid-template-columns:1fr}
+  .search{border-radius:24px;flex-wrap:wrap;padding:10px 10px 10px 22px}
+  .search .chips{display:none}
+  .hero-note{display:none}
+  .hero-card{right:var(--pad);max-width:none}
+  .stats{grid-template-columns:1fr 1fr}
+  .prog{grid-template-columns:76px minmax(0,1fr);gap:18px}
+  .prog .thumb{display:block;width:76px;height:76px;border-radius:16px;object-fit:cover}
+  .prog p,.prog .arrow{display:none}
+  .prog-float{display:none}
+  .bento{grid-template-columns:1fr 1fr;grid-auto-rows:clamp(200px,52vw,380px)}
+  .t1{grid-column:span 2;grid-row:span 1}
+  .t2,.t3,.t4,.t5{grid-column:span 1}
+  .tile .cap span{display:none}
+  .tile .cap b{font-size:20px}
+  .fs-grid{grid-template-columns:1fr}
+  .shop-copy{position:static}
+  .spec{grid-template-columns:1fr}
+  .brands{grid-template-columns:repeat(2,1fr)}
+  .team{grid-template-columns:1fr}
+  .team-quote,.team-a,.team-b,.team-meta{grid-column:1;grid-row:auto}
+  .team-meta{margin-bottom:24px}
+  .news{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:520px){
+  .hero-card img{width:72px;height:56px}
+  .hero-card span{display:none}
+  .row{grid-template-columns:56px minmax(0,1fr)}
+  .row .ph{width:56px;height:56px}
+  .row .pr{grid-column:2;text-align:left}
+  .signup{flex-direction:column;align-items:stretch;border-radius:24px;padding:8px}
+  .signup input{padding:0 16px}
+  .signup .btn{justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav" id="nav">
+  <a class="logo" href="#" aria-label="Fridro domov"><img src="assets/img/logo-fridro-35.png" alt="Fridro, all in one place, 35 let z vami"></a>
+  <nav class="nav-links" aria-label="Glavna navigacija">
+    <a href="#programi">Program</a>
+    <a href="#full-service">Full Service</a>
+    <a href="#katalogi">Katalogi</a>
+    <a href="#novice">Novice</a>
+    <a href="#o-nas">O nas</a>
+  </nav>
+  <div class="nav-right">
+    <a class="lang" href="#">SI</a>
+    <a class="btn btn-ghost" href="#trgovina">Prijava</a>
+    <a class="btn btn-ink" href="#trgovina">V trgovino
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <button class="burger" id="burger" aria-label="Odpri meni"><span></span></button>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <button class="close" id="drawerClose" aria-label="Zapri meni">×</button>
+  <a href="#programi">Program</a>
+  <a href="#full-service">Full Service</a>
+  <a href="#trgovina">B2B trgovina</a>
+  <a href="#katalogi">Katalogi</a>
+  <a href="#novice">Novice</a>
+  <a href="#o-nas">O nas</a>
+  <a href="#kontakt">Kontakt</a>
+</div>
+
+<main>
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-top">
+    <h1 class="display split">Vse na enem mestu.</h1>
+    <div class="hero-side">
+      <p class="lead fade">Vrhunsko orodje, pametni avtomati in oprema za maksimalno produktivnost vaše proizvodnje.</p>
+      <div class="hero-ctas fade">
+        <a class="btn btn-green" href="#trgovina">Vstopi v trgovino
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#programi">Najdi pravo orodje</a>
+      </div>
+    </div>
+  </div>
+
+  <form class="search fade" onsubmit="event.preventDefault()" role="search">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+    <input type="search" placeholder="Iščite po šifri, nazivu ali blagovni znamki" aria-label="Iskanje izdelkov">
+    <div class="chips">
+      <a class="chip" href="#programi">Rezilno orodje</a>
+      <a class="chip" href="#programi">Merilno orodje</a>
+      <a class="chip" href="#programi">Delovna zaščita</a>
+    </div>
+    <button class="btn btn-ink" type="submit">Išči</button>
+  </form>
+
+  <div class="hero-media" id="heroMedia">
+    <img src="assets/img/hero.jpg" alt="Karbidno rezkalo pri obdelavi jekla" id="heroImg">
+    <a class="hero-card" href="#full-service">
+      <img src="assets/img/vending.jpg" alt="">
+      <div><b>Full Service by Fridro</b><span>Avtomat za orodja in AST dezinfekcijska omara za čevlje</span></div>
+    </a>
+    <div class="hero-note"><i></i>Vaš partner že 35 let</div>
+  </div>
+</section>
+
+<!-- ============ PARTNER + STATS ============ -->
+<section class="sec">
+  <div class="partner">
+    <div class="partner-media reveal-img"><img class="par" src="assets/img/plinth.jpg" alt="Karbidni sveder in rezalna ploščica na podstavku"></div>
+    <div class="partner-copy">
+      <h2 class="h2 split">Zaupanja vreden partner za industrijo.</h2>
+      <p class="lead fade">Fridro že 35 let oskrbuje proizvodna podjetja z rezilnim, vpenjalnim in merilnim orodjem, zaščitno opremo in opremo za delavnico. Vse, kar potrebuje vaša proizvodnja, naročite pri enem partnerju, s svetovanjem strokovnjakov, ki orodje poznajo iz prakse.</p>
+      <div class="stats">
+        <div class="stat"><b><span class="count" data-to="35">35</span></b><span>let izkušenj na trgu industrijskega orodja</span></div>
+        <div class="stat"><b><span class="count" data-to="10">10</span></b><span>produktnih programov, od rezilnega orodja do higiene</span></div>
+        <div class="stat"><b><span class="count" data-to="20">20</span><sup>+</sup></b><span>vodilnih blagovnih znamk, kot so Bosch, Mitutoyo in 3M</span></div>
+        <div class="stat"><b><span class="count" data-to="6">6</span></b><span>jezikov spletne trgovine, od slovenščine do bolgarščine</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="sec programs" id="programi">
+  <div class="sec-head">
+    <h2 class="h2 split">Deset programov. En partner.</h2>
+    <p class="lead fade">Od mikro stružnih nožkov do delovnih miz z električno nastavitvijo višine. Izberite program in poiščite pravo orodje zase.</p>
+  </div>
+
+  <div class="bento">
+    <a class="tile t1 rise" href="#"><img src="assets/img/cat-cutting.jpg" alt="Karbidna rezkala in svedri"><div class="cap"><b>Rezilno orodje</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></a>
+    <a class="tile t2 rise" href="#"><img src="assets/img/cat-measuring.jpg" alt="Digitalno pomično merilo in mikrometer"><div class="cap"><b>Merilno orodje</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></a>
+    <a class="tile t3 rise" href="#"><img src="assets/img/cat-clamping.jpg" alt="Strojni primež in vpenjalna glava"><div class="cap"><b>Vpenjalno orodje</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></a>
+    <a class="tile t4 rise" href="#"><img src="assets/img/cat-hand.jpg" alt="Viličasto obročni ključi"><div class="cap"><b>Ročna orodja</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></a>
+    <a class="tile t5 rise" href="#"><img src="assets/img/cat-protection.jpg" alt="Zaščitna očala, glušniki in rokavice"><div class="cap"><b>Delovna zaščita</b><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17 17 7M9 7h8v8"/></svg></span></div></a>
+  </div>
+
+  <div class="prog-list" id="progList">
+    <a class="prog" href="#" data-img="assets/img/cat-cutting.jpg"><img class="thumb" src="assets/img/cat-cutting.jpg" alt=""><h3>Rezilno orodje</h3><p>Stružna držala, grezila, povrtala, navojna držala in ploščice, mikro stružna orodja</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/cat-clamping.jpg"><img class="thumb" src="assets/img/cat-clamping.jpg" alt=""><h3>Vpenjalno orodje</h3><p>Primeži, vpenjalni trni, vpenjalne glave in čeljusti</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/cat-measuring.jpg"><img class="thumb" src="assets/img/cat-measuring.jpg" alt=""><h3>Merilno orodje</h3><p>Pomična merila, mikrometri, merilne ure in naprave za prednastavljanje orodja</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/cat-grinding.jpg"><img class="thumb" src="assets/img/cat-grinding.jpg" alt=""><h3>Brusno orodje</h3><p>Rezalne in brusne plošče, pahljačasti brusi, paste za brušenje in poliranje</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/site-05-zagini-listi-loki-rocni.jpeg"><img class="thumb" src="assets/img/site-05-zagini-listi-loki-rocni.jpeg" alt=""><h3>Žagini listi, loki ročni</h3><p>Listi za ročne in strojne žage, ročni loki</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/cat-hand.jpg"><img class="thumb" src="assets/img/cat-hand.jpg" alt=""><h3>Ročna orodja</h3><p>Viličasti, obročni in nasadni ključi, bit nastavki, kladiva</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/cat-protection.jpg"><img class="thumb" src="assets/img/cat-protection.jpg" alt=""><h3>Delovna zaščita</h3><p>Avtomatske varilne maske, zaščita sluha in vida, rokavice, izbrana ponudba 3M</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/site-08-oprema-za-delavnico.jpeg"><img class="thumb" src="assets/img/site-08-oprema-za-delavnico.jpeg" alt=""><h3>Oprema za delavnico</h3><p>Delovne in pakirne mize z nastavitvijo višine, zaboji, mazalke</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/site-09-pripomocki-za-higieno.jpeg"><img class="thumb" src="assets/img/site-09-pripomocki-za-higieno.jpeg" alt=""><h3>Pripomočki za higieno</h3><p>Čiščenje, nega rok in higiena delovnega okolja</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    <a class="prog" href="#" data-img="assets/img/site-10-elektricno-orodje.jpeg"><img class="thumb" src="assets/img/site-10-elektricno-orodje.jpeg" alt=""><h3>Električno in pnevmatsko orodje</h3><p>Kotni brusilniki, baterijske vbodne in sabljaste žage, pnevmatika</p><span class="arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+  </div>
+  <div class="prog-float" id="progFloat" aria-hidden="true"></div>
+</section>
+
+<!-- ============ FULL SERVICE ============ -->
+<section class="sec dark" id="full-service">
+  <div class="sec-head">
+    <h2 class="h2 split">Full Service by Fridro.</h2>
+    <p class="lead fade">Pametni avtomati za orodja v vaši proizvodnji. Orodje je na voljo tam, kjer ga potrebujete, poraba je pregledna, zaloga pa se dopolnjuje brez vašega dela.</p>
+  </div>
+  <div class="fs-media reveal-img">
+    <img class="par" src="assets/img/vending.jpg" alt="Pametni avtomat za orodja v proizvodni hali">
+    <div class="fs-badge"><i></i>Avtomati za orodja</div>
+  </div>
+  <div class="fs-grid">
+    <div class="fs-item rise">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M15 6h2M15 12h2M15 18h2"/></svg></div>
+      <h3>Avtomati za orodja</h3>
+      <p>Rezilno orodje in zaščitna oprema v avtomatu ob stroju. Vsak prevzem je zabeležen po delavcu, stroju in stroškovnem mestu.</p>
+    </div>
+    <div class="fs-item rise">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
+      <h3>Full Service</h3>
+      <p>Mi skrbimo za polnjenje, zalogo in naročila. Vi se posvetite proizvodnji, brez zastojev zaradi manjkajočega orodja.</p>
+    </div>
+    <div class="fs-item rise">
+      <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
+      <h3>AST dezinfekcijska omara za čevlje</h3>
+      <p>Higiena delovne obutve za ekipe v izmenah. Čevlji so po vsaki izmeni suhi, sveži in pripravljeni za naslednji dan.</p>
+    </div>
+  </div>
+  <div class="fs-cta">
+    <p class="muted">Želite avtomat v svoji proizvodnji? Pripravimo predlog po meri.</p>
+    <a class="btn btn-light" href="#kontakt">Dogovorite se za predstavitev
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ============ B2B SHOP ============ -->
+<section class="sec" id="trgovina">
+  <div class="shop">
+    <div class="shop-copy">
+      <h2 class="h2 split">Za vas naprednejši.</h2>
+      <p class="lead fade">Nova B2B spletna trgovina za industrijska orodja in opremo. Preprosto naročanje, široka izbira izdelkov in vaše cene, ko se prijavite.</p>
+      <div class="shop-feats fade">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Moji priljubljeni</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Moja naročila</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Knjižnica katalogov</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m5 12 5 5 9-10"/></svg>Akcije in odprodaja</span>
+      </div>
+      <div class="hero-ctas fade">
+        <a class="btn btn-ink" href="#">Vstopi v spletno trgovino
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#kontakt">Registracija</a>
+      </div>
+    </div>
+
+    <div class="table rise">
+      <div class="table-head"><span>Izbrano iz trgovine</span><span>Cena pred prijavo, brez DDV</span></div>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10c0-1 1-2 3-2h12c2 0 3 1 3 2v2c0 2-2 3-4 3s-3-1-4-2c-1 1-2 2-4 2s-4-1-4-3Z"/></svg></div><div><div class="nm">Očala zaščitna Modell 680, prozorno steklo 2 mm</div><div class="br">Odporno na praske in meglenje</div></div><div class="pr"><b>2,40 €</b><span>Prijavite se za nakup</span></div></a>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c4 0 7 3 7 7v3c0 4-3 8-7 8s-7-4-7-8v-3c0-4 3-7 7-7Z"/><circle cx="9" cy="16" r="2"/><circle cx="15" cy="16" r="2"/></svg></div><div><div class="nm">Maska celoobrazna 6800 za večkratno uporabo, vel. M</div><div class="br">3M</div></div><div class="pr"><b>168,71 €</b><span>Prijavite se za nakup</span></div></a>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2"/></svg></div><div><div class="nm">Plošča rezalna D125×1,0×22,23 mm za INOX</div><div class="br">CuA 542 T BF80 PLUS</div></div><div class="pr"><b>0,65 €</b><span>Prijavite se za nakup</span></div></a>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="13" height="6" rx="2"/><path d="M16 12h3M19 8v8"/></svg></div><div><div class="nm">Brusilnik kotni GWS 19-125 CIE Professional 1900 W</div><div class="br">Bosch</div></div><div class="pr"><b>218,37 €</b><span>Prijavite se za nakup</span></div></a>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="9" width="13" height="6" rx="2"/><path d="M16 12h3M19 8v8"/></svg></div><div><div class="nm">Kotna brusilka GWS 9-125 S</div><div class="br">Bosch</div></div><div class="pr"><b>75,44 €</b><span>Prijavite se za nakup</span></div></a>
+      <a class="row" href="#"><div class="ph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 16h12l4-4-4-4H4z"/></svg></div><div><div class="nm">Garnitura držalo za odrez ATSEL 1616-2T17 in 10 ploščic ATD 203-TS</div><div class="br">Rezilno orodje</div></div><div class="pr"><b>105,00 €</b><span>Prijavite se za nakup</span></div></a>
+      <div class="table-foot"><p>Prijavljeni partnerji vidijo svoje pogodbene cene.</p><a class="link" href="#">Vse akcije <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SPECIALIST ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="spec">
+    <a class="card rise" href="#">
+      <img src="assets/img/edm.jpg" alt="Žica za erodiranje na kolutu">
+      <h3>Iskalnik žice za erodiranje</h3>
+      <div><p>Poiščite popolno žico za erodiranje v nekaj preprostih korakih z našim naprednim iskalnikom.</p><span class="link">Izberite ustrezno <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+    <a class="card rise" href="#">
+      <img src="assets/img/cat-protection.jpg" alt="Zaščitna oprema" style="object-position:center 40%">
+      <h3>Zaščitna oprema 3M</h3>
+      <div><p>Od varilnih mask in filtrov do zaščite sluha. Kakovostni izdelki za varnost in udobje pri delu.</p><span class="link">Pojdi na ponudbo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+    <a class="card light rise" href="#">
+      <h3>Časopis Fridro Novice</h3>
+      <img class="paper-img" src="assets/img/casopis.png" alt="Časopis Fridro Novice, prva izdaja">
+      <div><p>Strokovni nasveti, industrijske novosti in uporabne informacije iz sveta orodij in opreme.</p><span class="link">Preberite prvo izdajo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ CATALOGS ============ -->
+<section class="sec" id="katalogi" style="padding-left:0;padding-right:0;background:var(--paper)">
+  <div class="sec-head" style="padding:0 var(--pad)">
+    <h2 class="h2 split">Knjižnica katalogov.</h2>
+    <p class="lead fade">Aktualne akcije, letaki in katalogi naših partnerjev na enem mestu. Prelistajte jih na spletu ali prenesite.</p>
+  </div>
+  <div class="shelf-wrap" id="shelfWrap">
+    <div class="shelf" id="shelf">
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/achteck.png" alt="Katalog Achteck" draggable="false"></div><b>Križni rezkarji Achteck</b><span>Katalog</span></a>
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/bosch.png" alt="Bosch letak" draggable="false"></div><b>Bosch akcijska ponudba</b><span>Letak</span></a>
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/insize.png" alt="Akcija Insize" draggable="false"></div><b>Akcija Insize 09/26</b><span>Akcija</span></a>
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/oprema-0726.png" alt="Oprema in zaščita" draggable="false"></div><b>Oprema in zaščita 07/26</b><span>Akcija</span></a>
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/3m.png" alt="Katalog zaščite 3M" draggable="false"></div><b>Katalog zaščite 3M</b><span>Katalog</span></a>
+      <a class="book" href="#"><div class="cover"><img src="assets/img/cat/jjtools.png" alt="JJ Tools dentalni rezkarji" draggable="false"></div><b>JJ Tools dentalni rezkarji</b><span>Katalog</span></a>
+    </div>
+  </div>
+  <div class="shelf-bar">
+    <div class="progress"><i id="shelfProg"></i></div>
+    <a class="link" href="#">Vstopi v knjižnico vseh katalogov <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<!-- ============ BRANDS ============ -->
+<section class="sec">
+  <div class="sec-head">
+    <h2 class="h2 split">Znamke, ki jim zaupa industrija.</h2>
+    <p class="lead fade">Z vodilnimi proizvajalci sodelujemo neposredno, zato vam lahko svetujemo pri vsakem izdelku in zagotovimo dobavo.</p>
+  </div>
+  <div class="brands fade">
+    <div class="brand"><img src="assets/img/brands/0016929_16_bosch.png" alt="Bosch"></div>
+    <div class="brand"><img src="assets/img/brands/0016933_9_miutoyo.png" alt="Mitutoyo"></div>
+    <div class="brand"><img src="assets/img/brands/0016926_8_3m.png" alt="3M"></div>
+    <div class="brand"><img src="assets/img/brands/0016923_1_widia.png" alt="Widia"></div>
+    <div class="brand"><img src="assets/img/brands/0016924_2_achteck.png" alt="Achteck"></div>
+    <div class="brand"><img src="assets/img/brands/0016928_14_metabo.png" alt="Metabo"></div>
+    <div class="brand"><img src="assets/img/brands/0016934_11_unior.png" alt="Unior"></div>
+    <div class="brand"><img src="assets/img/brands/0016931_10_insize.png" alt="Insize"></div>
+    <div class="brand"><img src="assets/img/brands/0016927_3_vargus.png" alt="Vargus"></div>
+    <div class="brand"><img src="assets/img/brands/0016920_3_precitool.png" alt="Precitool"></div>
+    <div class="brand"><img src="assets/img/brands/0016921_4_stock.png" alt="Stock"></div>
+    <div class="brand"><img src="assets/img/brands/0016922_5_ejedals.png" alt="Ejendals"></div>
+    <div class="brand"><img src="assets/img/brands/0016932_29_weldas.png" alt="Weldas"></div>
+    <div class="brand"><img src="assets/img/brands/0016935_12_boa.png" alt="BOA"></div>
+  </div>
+</section>
+
+<!-- ============ TEAM ============ -->
+<section class="sec" id="o-nas" style="padding-top:0">
+  <div class="team">
+    <div class="team-quote"><h2 class="h2 split">Ekipa Fridro. <span class="gray">Vedno na voljo za nasvet pri izbiri pravega orodja.</span></h2></div>
+    <div class="team-meta">
+      <p class="lead fade">Naša ekipa strokovnjakov je vedno na voljo za svetovanje in pomoč pri izbiri pravega orodja za vaš naslednji projekt.</p>
+      <a class="btn btn-ink fade" href="#">Spoznajte nas
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <div class="team-a reveal-img"><img class="par" src="assets/img/advisor.jpg" alt="Tehnični svetovalec Fridro v obdelovalni delavnici"></div>
+    <div class="team-b reveal-img"><img class="par" src="assets/img/warehouse.jpg" alt="Skladišče industrijskega orodja" style="object-position:center"></div>
+  </div>
+</section>
+
+<!-- ============ NEWS ============ -->
+<section class="sec" id="novice" style="padding-top:0">
+  <div class="sec-head">
+    <h2 class="h2 split">Novice in novosti.</h2>
+    <div style="display:flex;justify-content:flex-end" class="fade"><a class="link" href="#">Poglej vse novice <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+  <div class="news">
+    <a class="post rise" href="#"><div class="im"><img src="assets/img/news/taster.png" alt="3D taster Haff & Schneider"></div><h3>3D taster Haff &amp; Schneider: natančnost pri CNC obdelavi</h3><p>Univerzalni 3D taster z zaščito IP67 in merilno natančnostjo 0,01 mm za hitro določanje ničelne točke v oseh X, Y in Z.</p></a>
+    <a class="post rise" href="#"><div class="im"><img src="assets/img/news/sluh.png" alt="Zaščita sluha"></div><h3>Zaščita sluha pri delu: zakaj je pomembna in kako izbrati pravo</h3><p>Hrup v industriji lahko povzroči trajne poškodbe sluha. Vrste ušesnih čepkov, glušnikov in nasveti za pravilno izbiro.</p></a>
+    <a class="post rise" href="#"><div class="im"><img src="assets/img/news/fetra.png" alt="Fetra vozički"></div><h3>Fetra: praktične rešitve za učinkovitejše delo v vulkanizerstvu</h3><p>Vozički, mobilni regali in transportni podstavki, ki olajšajo rokovanje s pnevmatikami v sezoni menjav.</p></a>
+    <a class="post rise" href="#"><div class="im"><img src="assets/img/news/jalas.png" alt="Jalas FootStop"></div><h3>Jalas FootStop Service: prava podpora se začne pri stopalih</h3><p>Hitra analiza stopalnega loka in obremenitvenih točk pomaga izbrati ustrezen vložek za boljšo podporo pri delu.</p></a>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="foot" id="kontakt">
+  <div class="news-signup">
+    <h2 class="h3 split">Prijavite se na e-novice in prejmite dodatni 3&nbsp;% popust.</h2>
+    <div class="fade">
+      <form class="signup" id="signup">
+        <input type="email" required placeholder="Vaš e-poštni naslov" aria-label="E-poštni naslov">
+        <button class="btn btn-ink" type="submit">Prijava</button>
+      </form>
+      <p class="signup-ok" id="signupOk">Hvala, prijava je uspela.</p>
+    </div>
+  </div>
+  <div class="foot-grid">
+    <div><a class="logo" href="#"><img src="assets/img/logo-fridro-35.png" alt="Fridro"></a></div>
+    <div><h4>Program</h4><ul><li><a href="#programi">Rezilno orodje</a></li><li><a href="#programi">Merilno orodje</a></li><li><a href="#programi">Delovna zaščita</a></li><li><a href="#programi">Vsi programi</a></li></ul></div>
+    <div><h4>Storitve</h4><ul><li><a href="#full-service">Avtomati za orodja</a></li><li><a href="#full-service">Full Service</a></li><li><a href="#full-service">AST omara za čevlje</a></li><li><a href="#">Iskalnik žice</a></li></ul></div>
+    <div><h4>Podjetje</h4><ul><li><a href="#o-nas">O nas</a></li><li><a href="#novice">Novice</a></li><li><a href="#">Fridro časopis</a></li><li><a href="#katalogi">Katalogi</a></li></ul></div>
+    <div><h4>Pomoč</h4><ul><li><a href="#kontakt">Kontakt</a></li><li><a href="#">Moj račun</a></li><li><a href="#">Obrazec za vračilo</a></li><li><a href="#">Registracija B2B</a></li></ul></div>
+  </div>
+  <div class="foot-bottom">
+    <span>© 2026 Fridro. Vse pravice pridržane.</span>
+    <div class="langs"><a class="on" href="#">SI</a><a href="#">EN</a><a href="#">DE</a><a href="#">HR</a><a href="#">BA</a><a href="#">BG</a></div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // nav state
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', scrollY > 20);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  // drawer
+  const drawer = document.getElementById('drawer');
+  document.getElementById('burger').onclick = () => drawer.classList.add('open');
+  document.getElementById('drawerClose').onclick = () => drawer.classList.remove('open');
+  drawer.querySelectorAll('a').forEach(a => a.onclick = () => drawer.classList.remove('open'));
+
+  // newsletter
+  document.getElementById('signup').addEventListener('submit', e => { e.preventDefault(); e.target.style.display='none'; document.getElementById('signupOk').style.display='block'; });
+
+  // split headlines into word masks (keeps inner spans like .gray)
+  document.querySelectorAll('.split').forEach(el => {
+    const walk = node => {
+      [...node.childNodes].forEach(n => {
+        if (n.nodeType === 3) {
+          const frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(t => {
+            if (!t) return;
+            if (/^\s+$/.test(t)) { frag.appendChild(document.createTextNode(' ')); return; }
+            const w = document.createElement('span'); w.className = 'w';
+            const i = document.createElement('span'); i.textContent = t; w.appendChild(i); frag.appendChild(w);
+          });
+          n.replaceWith(frag);
+        } else if (n.nodeType === 1) walk(n);
+      });
+    };
+    walk(el);
+  });
+
+  // programs hover image
+  const list = document.getElementById('progList'), float = document.getElementById('progFloat');
+  const imgs = {};
+  list.querySelectorAll('.prog').forEach(p => {
+    const src = p.dataset.img;
+    if (!imgs[src]) { const im = new Image(); im.src = src; im.alt=''; float.appendChild(im); imgs[src] = im; }
+    p.addEventListener('mouseenter', () => { Object.values(imgs).forEach(i => i.classList.remove('on')); imgs[src].classList.add('on'); float.style.opacity = 1; });
+  });
+  list.addEventListener('mouseleave', () => float.style.opacity = 0);
+  let fx = 0, fy = 0, tx = 0, ty = 0;
+  addEventListener('mousemove', e => { tx = e.clientX + 180; ty = e.clientY; });
+  (function loop(){ fx += (tx - fx) * .14; fy += (ty - fy) * .14; float.style.transform = `translate(${fx}px,${fy}px) translate(-50%,-50%) scale(${float.style.opacity == 1 ? 1 : .85})`; requestAnimationFrame(loop); })();
+
+  // catalog shelf: drag + wheel + progress
+  const wrap = document.getElementById('shelfWrap'), shelf = document.getElementById('shelf'), prog = document.getElementById('shelfProg');
+  let x = 0, target = 0, down = false, sx = 0, sTarget = 0, moved = 0;
+  const max = () => Math.max(0, shelf.scrollWidth - wrap.clientWidth);
+  wrap.addEventListener('pointerdown', e => { down = true; moved = 0; sx = e.clientX; sTarget = target; });
+  addEventListener('pointermove', e => { if (!down) return; moved = Math.abs(e.clientX - sx); target = Math.min(max(), Math.max(0, sTarget - (e.clientX - sx))); });
+  addEventListener('pointerup', () => down = false);
+  wrap.addEventListener('click', e => { if (moved > 6) e.preventDefault(); }, true);
+  wrap.addEventListener('wheel', e => { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) { e.preventDefault(); target = Math.min(max(), Math.max(0, target + e.deltaX)); } }, {passive:false});
+  // touch: native-like swipe
+  (function loop(){ x += (target - x) * .12; shelf.style.transform = `translateX(${-x}px)`; const m = max(); prog.style.transform = `scaleX(${m ? .2 + .8 * (x / m) : 1})`; requestAnimationFrame(loop); })();
+
+  if (reduce || !window.gsap) return;
+  gsap.registerPlugin(ScrollTrigger);
+
+  // smooth scroll
+  if (window.Lenis) {
+    const lenis = new Lenis({ lerp: .1 });
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      const id = a.getAttribute('href'); if (id.length < 2) return; const t = document.querySelector(id); if (!t) return;
+      e.preventDefault(); lenis.scrollTo(t, { offset: -80 });
+    }));
+  }
+
+  // hero intro
+  const h1 = document.querySelectorAll('.hero h1 .w > span');
+  gsap.from(h1, { yPercent: 110, duration: 1.2, ease: 'expo.out', stagger: .08, delay: .1 });
+  gsap.from('.hero .fade', { y: 24, opacity: 0, duration: 1, ease: 'power3.out', stagger: .1, delay: .45 });
+  gsap.from('#heroMedia', { clipPath: 'inset(12% 6% 0% 6%)', duration: 1.6, ease: 'expo.out', delay: .3 });
+  gsap.from('#heroImg', { scale: 1.18, duration: 2.2, ease: 'expo.out', delay: .3 });
+  gsap.to('#heroImg', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '#heroMedia', start: 'top top', end: 'bottom top', scrub: true } });
+
+  // headlines on scroll
+  document.querySelectorAll('.split').forEach(el => {
+    if (el.closest('.hero')) return;
+    gsap.from(el.querySelectorAll('.w > span'), { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: .05, scrollTrigger: { trigger: el, start: 'top 85%' } });
+  });
+  gsap.utils.toArray('.fade').forEach(el => { if (el.closest('.hero')) return;
+    gsap.from(el, { y: 28, opacity: 0, duration: 1, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }); });
+  gsap.set('.rise', { y: 60, opacity: 0 });
+  ScrollTrigger.batch('.rise', { start: 'top 92%', onEnter: b => gsap.to(b, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: .08, overwrite: true }) });
+  addEventListener('load', () => ScrollTrigger.refresh());
+
+  // image reveal + inner parallax
+  gsap.utils.toArray('.reveal-img').forEach(el => {
+    gsap.from(el, { clipPath: 'inset(18% 10% 18% 10% round 36px)', duration: 1.5, ease: 'expo.out', scrollTrigger: { trigger: el, start: 'top 85%' } });
+    const im = el.querySelector('.par');
+    if (im) gsap.fromTo(im, { yPercent: -6 }, { yPercent: 6, ease: 'none', scrollTrigger: { trigger: el, start: 'top bottom', end: 'bottom top', scrub: true } });
+  });
+
+  // counters
+  document.querySelectorAll('.count').forEach(c => {
+    const to = +c.dataset.to, o = { v: 0 };
+    gsap.to(o, { v: to, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: c, start: 'top 90%' }, onUpdate: () => c.textContent = Math.round(o.v) });
+  });
+})();
+</script>
+</body>
+</html>
